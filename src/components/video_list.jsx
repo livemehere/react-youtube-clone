@@ -3,7 +3,7 @@ import VideoItem from './video_item';
 
 const VideoList = (props) =>{
     return (
-    <ul>
+    <ul className="d-flex list-unstyled flex-wrap justify-content-center">
         {props.videos.map(video=> <VideoItem key={video.id} video={video}/>)}
     </ul>
     );
