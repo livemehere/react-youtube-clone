@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/App.css"],"names":[],"mappings":"AAAA,KACE,iCACF,CAEA,WACE,cAAe,CACf,qBACF,CAEA,WACE,WACF","file":"main.aa5fafe2.chunk.css","sourcesContent":[".box {\n  transition: transform 300ms ease-out;\n}\n\n.box:hover {\n  cursor: pointer;\n  transform: scale(1.03);\n}\n\n.video-box {\n  width: 300px;\n}\n"]}
