@@ -3,14 +3,18 @@ import VideoList from "./components/video_list";
 import React, { useEffect, useState } from "react";
 import dotenv from "dotenv";
 import Header from "./components/header";
+import Detail from "./components/detail";
 dotenv.config();
 
 function App() {
   const [videos, setVideos] = useState([]);
+  const [selectedVideo, setSelectedVideo] = useState(null);
 
+  const selectVideo = (video) => {
+    setSelectedVideo(video);
+  };
   const search = async (e, inputText) => {
     e.preventDefault();
-    console.log(inputText);
 
     const requestOptions = {
       method: "GET",
@@ -18,7 +22,7 @@ function App() {
     };
 
     fetch(
-      `https://www.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_APIKEY}&part=snippet&chart=mostPopular&maxResults=20&q=${inputText}`,
+      `https://www.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_APIKEY}&type=video&part=snippet&chart=mostPopular&maxResults=20&q=${inputText}`,
       requestOptions
     )
       .then((response) => response.json())
@@ -50,7 +54,13 @@ function App() {
   return (
     <>
       <Header search={search} />
-      <VideoList videos={videos} />
+      {selectedVideo && (
+        <div className="detail_wrap sticky-top">
+          <Detail selectedVideo={selectedVideo} />
+        </div>
+      )}
+
+      <VideoList videos={videos} selectVideo={selectVideo} />
     </>
   );
 }
